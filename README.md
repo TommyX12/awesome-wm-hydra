@@ -67,6 +67,21 @@ The key binding config is a nested table, where each table key is a key ID (see 
     - A function to be called when the key is pressed. After pressing the key, this function will be called, and hydra will stay in this level of the key binding config so that other keys at this level can be pressed again as long as the activation key is still held down.
     - A nested config table with the same structure as described above. After pressing the key, hydra will go into this level of the key binding config, and the key hints will be updated to show the keys at this level.
 
+Since this is a plain Lua table, you can define the key binding config in any way you like, such as programmatically generating bindings:
+```lua
+for i = 1, 9 do
+    super_key_bindings[tostring(i)] = {
+        "view tag " .. i,
+        function()
+            local tag = awful.screen.focused().tags[i]
+            if tag then
+                tag:view_only()
+            end
+        end
+    }
+end
+```
+
 #### Key ID
 A key ID is a string that represents a key (along with modifiers). **Every modifier + key combination has a unique key ID**.
 - The key ID is a lower case string consists of dash-separated modifiers and the key itself (e.g. `control-a`, `control-shift-a`, `mod1-space`).
