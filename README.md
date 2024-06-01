@@ -1,5 +1,9 @@
 # awesome-wm-hydra
-Multi-key-sequence framework for AwesomeWM with key hints display. It allows you to bind action to a sequence of any number of keys, such as `Super` + `w` + `c`. The sequence resets only when the initial `Super` is released, allowing you to easily implement modal bindings, such as pressing `Super` + `m` for music-related keys then press `h`/`l` multiple-times for seeking while holding down `Super`.
+Multi-key-sequence framework for AwesomeWM with key hints display.
+
+It allows you to bind action to a sequence of any number of keys, such as `Super` + `w` + `c`. The sequence resets only when the initial `Super` is released, allowing you to easily implement modal bindings, such as pressing `Super` + `m` for music-related keys then press `h`/`l` multiple-times for seeking while holding down `Super`.
+
+This supercharges your AwesomeWM key bindings by allowing you to control an infinite number of actions through the keyboard without having to remember them all.
 
 ![Screenshot 1](screenshots/1.png)
 ![Screenshot 2](screenshots/2.png)
