@@ -64,9 +64,31 @@ The key binding config is a nested table, where each table key is a key ID (see 
     - A nested config table with the same structure as described above. After pressing the key, hydra will go into this level of the key binding config, and the key hints will be updated to show the keys at this level.
 
 #### Key ID
-TODO
+A key ID is a string that represents a key (along with modifiers). **Every modifier + key combination has a unique key ID**.
+- The key ID is a lower case string consists of dash-separated modifiers and the key itself (e.g. `control-a`, `control-shift-a`, `mod1-space`).
+- Modifiers are `control`, `shift`, `mod1` (alt), or `mod4` (super), and **they must appear in sorted order** (e.g. `control` before `shift`).
+- The key itself is the key name, such as `a`, `b`, `1`, `space`, `return`, etc. Note that when shift is active, the key name is the shifted key name (e.g. `!` instead of `1`), except for alphabets (where they are always lowercase).
+- Because every modifier + key combination has a unique key ID, be sure to double-check the key ID when defining key bindings.
 
 #### Hiding key from key hints
-TODO
+Use `hydra.hidden` as the description string to hide the key from key hints. This is useful when there are multiple similar keys such as `1`, `2`, `3`, etc., and you only want to show the hint for `1`.
 
-### Main trigger
+### Main trigger arguments
+Here are the arguments for the `hydra.start` function:
+- Required arguments:
+    - `activation_key`: The trigger key. This is **not** a key ID, but a AwesomeWM key name. This must match the key used in your awesome key config to trigger hydra, since it's used to detect when the activation key is released.
+    - `config`: The key binding config table.
+- Optional arguments:
+    - `ignored_mod`: The modifier to ignore when detecting the activation key. This is **not** a key ID, but a AwesomeWM modifier name. This is useful when the activation key is a modifier key, such as `Mod4` (super key), so that the activation key itself does not have to be specified in the key binding config.
+    - `hide_first_level`: Whether to hide the key hints at the first level. Defaults to `false`.
+- Key hint theme customizations:
+    - `key_fg`: The foreground color of the keys.
+    - `key_bg`: The background color of the keys.
+    - `key_control_fg`: The foreground color of the control modifier.
+    - `key_shift_fg`: The foreground color of the shift modifier.
+    - `key_modifier_fg`: The foreground color of the alt and super modifiers.
+    - `activation_fg`: The foreground color of the activation key.
+    - `nested_fg`: The foreground color of hints that point to nested levels.
+    - `nested_bg`: The background color of hints that point to nested levels.
+    - `focused_fg`: The foreground color of the key that just got pressed.
+    - `focused_bg`: The background color of the key that just got pressed.
